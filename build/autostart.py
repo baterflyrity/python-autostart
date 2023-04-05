@@ -5,7 +5,8 @@ from typing import List
 
 
 def get_autostart_commands() -> List[str]:
-	return [c for c in [cmd.strip() for cmd in os.getenv('AUTOSTART', '').split(':')] if c]
+	variables = ['AUTOSTART'] + [name for name in list(os.environ) if name.startswith('AUTOSTART_')]
+	return [c for c in [cmd.strip() for variable in variables for cmd in os.getenv(variable, '').split(':')] if c]
 
 
 def execute_command_in_background(command: str) -> None:

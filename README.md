@@ -10,8 +10,9 @@ Command can be added by two ways:
 
 - update script at *autostart.sh*
 - define environment variable *AUTOSTART* (`:` can be used to separate different commands)
+- define environment variable prefixed *AUTOSTART_* (`:` can be used to separate different commands)
 
-### Usage example
+# Usage example
 
 Echo something on start:
 
@@ -37,15 +38,18 @@ docker run -it --rm -e "AUTOSTART=echo 'Hello, world!': echo 'Still running.'" b
 > / # exit
 
 
-Prestart some services and execute command:
+Prestart some services via different environment variable and execute command:
 
 ```bash
-docker run -it --rm -e "AUTOSTART=echo 'Service started.'" baterflyrity/python-autostart python3 -V
+docker run -it --rm -e "AUTOSTART_SERVICE1=echo 'Service 1 started.'" -e "AUTOSTART_SERVICE2=echo 'Service 2 started.'" baterflyrity/python-autostart python3 -V
 ```
 
-> Running echo 'Service started.'  
-> Service started.  
+> Running echo 'Service 1 started.'  
+> Service 1 started.  
+> Running echo 'Service 2 started.'  
+> Service 2 started.  
 > Python 3.11.2
+
 
 # Building from sources
 
@@ -68,3 +72,9 @@ python3.11 builder.py push
 # See also
 
 * [baterflyrity/pythonssh](https://hub.docker.com/r/baterflyrity/pythonssh) - docker image with preinstalled ssh server (sshd) and python.
+
+# Changelog
+
+**1.1.0**
+ * Add support for *AUTOSTART_...* environment variables.
+ * Update examples.
