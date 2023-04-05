@@ -25,9 +25,24 @@ def _fill_template(path: Path, template: str, variables: dict[str, str]) -> tupl
 
 
 def _autotag(image: str) -> str:
-	if image.startswith('python:'):
-		return image.split(':')[-1].split('-')[0].strip()
-	return image.strip()
+	chunks = image.strip().split(':')
+	if len(chunks) == 1:
+		version = flavor = None
+	else:
+		chunks2 = chunks[1].split('-')
+		version = chunks2[0]
+		if len(chunks2) == 1:
+			flavor = None
+		else:
+			flavor = '-'.join(chunks2[1:])
+	chunks3 = chunks[0].split('/')
+	name = chunks3[-1]
+	if len(chunks3) == 1:
+		user = None
+	else:
+		user = chunks3[0]
+
+	return version or name
 
 
 def _find_tag(dockerfile: str) -> str | None:
