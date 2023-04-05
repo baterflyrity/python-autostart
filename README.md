@@ -2,14 +2,14 @@
 
 Docker images pack with autostart feature and preinstalled python.
 
-Each container contains preinstalled python with tag version, e.g. *baterflyrity/python-autostart:3.11* = *python:3.11*. 
+Each container contains preinstalled python with tag version, e.g. *baterflyrity/python-autostart:3.11* = *python:3.11*.
 
 ### Add commands to autostart
 
-Command can be added by two ways: 
+Command can be added by two ways:
+
 - update script at *autostart.sh*
 - define environment variable *AUTOSTART* (`:` can be used to separate different commands)
-
 
 ### Usage example
 
@@ -47,9 +47,6 @@ docker run -it --rm -e "AUTOSTART=echo 'Service started.'" baterflyrity/python-a
 > Service started.  
 > Python 3.11.2
 
-
-
-
 # Building from sources
 
 Requirements:
@@ -67,3 +64,7 @@ python3.11 builder.py build --user baterflyrity # insert your username
 # optionally upload to dockerhub
 python3.11 builder.py push
 ```
+
+# See also
+
+* [baterflyrity/pythonssh](https://hub.docker.com/r/baterflyrity/pythonssh) - docker image with preinstalled ssh server (sshd) and python.
