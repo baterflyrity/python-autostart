@@ -2,7 +2,7 @@
 
 Docker images pack with autostart feature and preinstalled python.
 
-Each container contains preinstalled python with tag version, e.g. *baterflyrity/python-autostart:3.11* = *python:3.11*.
+Each container contains preinstalled python with tag version, e.g. *baterflyrity/python-autostart:3.12* = *python:3.12*.
 
 ### Add commands to autostart
 
@@ -56,14 +56,14 @@ docker run -it --rm -e "AUTOSTART_SERVICE1=echo 'Service 1 started.'" -e "AUTOST
 Requirements:
 
 * docker
-* python3.11
+* python3.11+
 * git
 
 ```bash
 git clone https://github.com/baterflyrity/python-autostart.git
 cd  python-autostart
 python3.11 -m pip install -r requirements.txt
-python3.11 builder.py make --image python:3.8-alpine --image python:3.9-alpine --image python:3.10-alpine --image python:3.11-alpine --image python:alpine
+python3.11 builder.py make --image python:3.8-alpine --image python:3.9-alpine --image python:3.10-alpine --image python:3.11-alpine --image python:3.12-alpine --image python:alpine --image python:3.8 --image python:3.9 --image python:3.10 --image python:3.11 --image python:3.12 --image python:latest
 python3.11 builder.py build --user baterflyrity # insert your username
 # optionally upload to dockerhub
 python3.11 builder.py push
@@ -74,6 +74,11 @@ python3.11 builder.py push
 * [baterflyrity/pythonssh](https://hub.docker.com/r/baterflyrity/pythonssh) - docker image with preinstalled ssh server (sshd) and python.
 
 # Changelog
+
+**1.1.1**
+ * Add debian based images.
+ * Add python 3.12 images.
+ * Small builder fixes.
 
 **1.1.0**
  * Add support for *AUTOSTART_...* environment variables.

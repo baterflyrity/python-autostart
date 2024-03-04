@@ -1,6 +1,6 @@
-FROM python:3.9-alpine
+FROM python:latest
 
-# TAG=3.9-alpine
+# TAG=latest
 
 LABEL author="baterflyrity"
 LABEL mail="baterflyrity@yandex.ru"

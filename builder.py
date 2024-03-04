@@ -25,6 +25,7 @@ def _fill_template(path: Path, template: str, variables: dict[str, str]) -> tupl
 
 
 def _autotag(image: str) -> str:
+	return image.strip().split(':')[-1]
 	chunks = image.strip().split(':')
 	if len(chunks) == 1:
 		version = flavor = None
@@ -85,7 +86,7 @@ def make(images: list[str] = typer.Option(tuple(), '-i', '--image', show_default
 
 
 @app.command()
-def build(name: str = typer.Option('python-autostart', '--name', '-n', help='Image name.'), user: str = typer.Option('', '--user', '-u', help='Image name user prefix, e.g. user/name. If not specified only name is used.', show_default=False), latest: str = typer.Option('alpine', '--latest', '-l', help='Tag to mark as latest image if such exists.')):
+def build(name: str = typer.Option('python-autostart', '--name', '-n', help='Image name.'), user: str = typer.Option('', '--user', '-u', help='Image name user prefix, e.g. user/name. If not specified only name is used.', show_default=False), latest: str = typer.Option('latest', '--latest', '-l', help='Tag to mark as latest image if such exists.')):
 	"""
 	Build docker images from generated dockerfiles.
 	"""
